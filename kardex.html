@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kardex de materiales</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="personalizacion.css">
+</head>
+<body class="kardex-incrustado">
+  <main>
+    <section class="kardex-panel" aria-labelledby="kardex-etiqueta">
+      <p class="kardex-etiqueta" id="kardex-etiqueta">KARDEX · CONTROL DE EXISTENCIAS</p>
+      <p>Los materiales y movimientos son ficticios. El saldo representa unidades físicas, no dinero.</p>
+
+      <div id="kardex-mensaje" class="kardex-mensaje" role="status" aria-live="polite" aria-atomic="true"></div>
+      <fieldset id="kardex-controles">
+        <legend>Administrar materiales y movimientos</legend>
+
+        <form id="kardex-alta" class="kardex-formulario" novalidate>
+          <h2>Agregar material</h2>
+          <label for="kardex-nuevo-nombre">Nombre del material</label>
+          <input id="kardex-nuevo-nombre" maxlength="60" autocomplete="off" placeholder="Ejemplo: cartulina">
+          <button type="submit">Agregar material</button>
+        </form>
+
+        <form id="kardex-busqueda" class="kardex-formulario" novalidate>
+          <h2>Buscar por nombre o código</h2>
+          <label for="kardex-consulta">Nombre o código (por ejemplo, MAT-001)</label>
+          <div class="kardex-busqueda-fila">
+            <input id="kardex-consulta" type="search" maxlength="80" autocomplete="off" placeholder="Escriba una búsqueda">
+            <button type="submit">Buscar</button>
+          </div>
+          <p id="kardex-resultados-texto" class="kardex-ayuda"></p>
+          <ul id="kardex-materiales" class="kardex-materiales" aria-label="Resultados de materiales"></ul>
+        </form>
+
+        <div class="kardex-formulario">
+          <h2>Material seleccionado</h2>
+          <p id="kardex-seleccion">Seleccione un material de la lista.</p>
+          <form id="kardex-edicion" novalidate>
+            <label for="kardex-nombre-editado">Cambiar nombre del material seleccionado</label>
+            <input id="kardex-nombre-editado" maxlength="60" autocomplete="off" placeholder="Nuevo nombre">
+            <button id="kardex-guardar-nombre" type="submit" disabled>Guardar nombre</button>
+          </form>
+          <div class="kardex-acciones">
+            <button id="kardex-inactivar" type="button" disabled>Inactivar material</button>
+            <button id="kardex-eliminar" type="button" class="kardex-secundario" disabled>Eliminar sin movimientos</button>
+          </div>
+          <p id="kardex-ayuda-acciones" class="kardex-ayuda">Elija un material para habilitar sus acciones.</p>
+        </div>
+
+        <form id="kardex-movimiento" class="kardex-formulario" novalidate>
+          <h2>Registrar movimiento</h2>
+          <label for="kardex-tipo">Tipo</label>
+          <select id="kardex-tipo">
+            <option value="entrada">Entrada</option>
+            <option value="salida">Salida</option>
+          </select>
+          <label for="kardex-cantidad">Cantidad (entero positivo)</label>
+          <input id="kardex-cantidad" type="number" min="1" step="1" inputmode="numeric">
+          <button id="kardex-registrar" type="submit" disabled>Registrar movimiento</button>
+          <p class="kardex-ayuda">No se permiten cero, negativos, decimales ni salidas mayores a la existencia.</p>
+        </form>
+
+        <div class="kardex-formulario">
+          <h2>Historial del material</h2>
+          <p id="kardex-saldo" class="kardex-saldo">Seleccione un material para consultar su saldo.</p>
+          <div class="kardex-tabla-contenedor">
+            <table>
+              <thead><tr><th>Tipo</th><th>Cantidad</th><th>Fecha</th></tr></thead>
+              <tbody id="kardex-historial"></tbody>
+            </table>
+          </div>
+          <button id="kardex-exportar" type="button">Exportar movimientos CSV</button>
+        </div>
+      </fieldset>
+      <p class="kardex-pie">Los datos se guardan sólo en el almacenamiento local de este navegador y origen. El CSV es una copia para Excel; no sincroniza datos.</p>
+    </section>
+  </main>
+  <script src="kardex.js"></script>
+</body>
+</html>

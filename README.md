@@ -1,54 +1,61 @@
-# Mi planificador de materiales educativos
+# Planificador y kardex de materiales educativos
 
 ## Autor y propósito
-[Escriba su nombre o identificador académico autorizado, nombre del sistema y actividad educativa. Use sólo datos ficticios.]
+
+Autor: [escriba su nombre o identificador académico autorizado].  
+Actividad: organizar un pedido ficticio y controlar las existencias de materiales educativos.
 
 ## Ejecutar
-Descargue y conserve juntos index.html, styles.css y app.js. Abra index.html en Chrome o Edge. Edite app.js, guarde y recargue. No necesita instalar paquetes ni conectarse a internet.
 
-## Responsabilidades
-- index.html: estructura y entradas.
-- styles.css: apariencia.
-- app.js: objeto limites, cálculo y validación sin acceso a pantalla; luego lectura y acciones de interfaz.
+Conserve juntos `index.html`, `styles.css`, `app.js`, `kardex.html`, `kardex.js` y `personalizacion.css`. Abra `index.html` en Chrome o Edge. No necesita instalar paquetes.
 
-## Pendientes obligatorios
-Complete TODO 1 (total en céntimos), TODO 2 (presupuesto) y TODO 3 (reutilizar validación). La plantilla muestra avisos de pendiente hasta completar estos cambios.
+## Integración y responsabilidades
 
-## Mi personalización
-[Nombre, actividad, materiales de ejemplo y presupuesto distinto de 150 soles, entre 50 y 300 y múltiplo de 10. Explique por qué lo eligió. Cambie limites.presupuestoCentimos y el texto visible; mantenga las demás reglas.]
+- `index.html` conserva el planificador S7 y enlaza la sección S9 mediante el marco `kardex-frame`, que carga `kardex.html`. Se usa un marco porque el navegador no incluye fragmentos HTML externos directamente al abrir archivos locales.
+- `kardex.html` contiene la sección de materiales, movimientos, búsqueda, historial y exportación. Carga `kardex.js` y `personalizacion.css`.
+- `kardex.js` mantiene una sola colección de materiales y otra de movimientos, valida las operaciones y persiste el kardex.
+- `personalizacion.css` amplía `styles.css` con la etiqueta personalizada y una paleta violeta RGB legible.
+- `app.js` conserva el cálculo y la validación del planificador, y ajusta la altura del marco del kardex.
 
-## Pruebas
-Registre válido, inválido, total igual al presupuesto, total superior, y conservación del pedido anterior seguida de Limpiar. Compruebe ambos botones. No invente resultados.
+La carpeta recibida contenía sólo los cuatro archivos del planificador; no incluía fragmentos S9 ni altas/listados de S8. Por eso se integró el kardex solicitado sin reemplazar el planificador ni inventar una segunda implementación S8. Cada material tiene un ID estable (`MAT-...`); las acciones de selección, edición y movimientos usan ese ID, no la posición del elemento en pantalla.
 
-## Mi aporte y ayuda recibida
-[Describa modificaciones, errores detectados, correcciones y ayuda de personas o IA.]
+## Reglas y almacenamiento
 
-## Repositorio individual y GitHub Pages
-Cada alumno crea su propio repositorio. En la web de GitHub use New repository y después Add file > Upload files para subir estos cuatro archivos en la raíz; no suba el ZIP sin extraer. Guarde los cambios con Commit changes.
-Para publicar: Settings > Pages > Deploy from a branch > main > /(root) > Save. GitHub Free permite Pages con repositorios públicos. Espere la publicación y abra la URL que GitHub muestre; compruebe ambos botones y actualice al subir cambios. Si aparece 404, compruebe index.html en la raíz y la rama seleccionada.
-No suba contraseñas, datos reales de alumnos ni informes personales. El informe se entrega en MAXEDRA. GitHub Pages es opcional esta semana. Ejecute su copia local y conserve los archivos originales para sustentar. En MAXEDRA entregue únicamente un PDF; no adjunte código, ZIP, Word ni imágenes por separado.
+El planificador conserva su presupuesto monetario de S/ 150.00, valida con las mismas reglas en Comprobar y Confirmar, y muestra total y saldo de dinero. El kardex calcula por separado las existencias físicas como entradas menos salidas. Las salidas no pueden exceder el saldo; los materiales con movimientos se pueden inactivar, pero no eliminar, y su historial se conserva. Sólo se elimina un material sin movimientos y después de aceptar la confirmación.
 
-Repositorio: [enlace propio]
-Sitio: [enlace que GitHub muestre]
+El kardex inicia con los materiales ficticios `MAT-001 · Cuaderno` y `MAT-002 · Lápices de colores`. Sus datos se guardan en `localStorage`, limitado a este navegador y origen; no hay una base compartida ni sincronización entre equipos. El botón CSV descarga una copia de movimientos con cantidades e IDs para abrir en Excel; editar el archivo no actualiza la aplicación.
 
-Fuente: https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
+## Personalización
 
-## Entrega y evaluación
+La etiqueta personalizada dice «KARDEX · CONTROL DE EXISTENCIAS» y usa 1.15 rem, peso 800 y violeta `rgb(107, 33, 168)` con texto blanco. La paleta de `personalizacion.css` mantiene contraste para texto, estados y controles.
 
-Trabajo individual. El único PDF reúne explicación, personalización, capturas del código y del sistema, cinco pruebas y aportes documentados en README. Plazo: 17/10/2026 a las 20:00, Perú. Durante la práctica cada estudiante sube su plantilla a su propio GitHub; esto no reemplaza el PDF.
+Autor y justificación personal de la etiqueta/paleta: [complete con su elección y motivo].
 
-Rúbrica: organización y reutilización 5; personalización funcional 5; pruebas e informe coherente 5; exposición individual del trabajo 5. Las consultas del taller resuelven dudas y no sustituyen la exposición del cuarto criterio.
+## Pruebas realizadas en la vista local
 
-## Evolución propuesta
-Semana 7: cálculo, validación y organización. Semana 8: crear y listar registros. Semana 9: buscar, modificar y eliminar. Semana 10: integración y comprobación individual. Las ampliaciones requieren las consignas de esas semanas; no se exigen en esta entrega.
+Para comprobar el límite del planificador se usaron 10 unidades a S/ 15.00 (igual al presupuesto) y luego S/ 15.01 (excede por S/ 0.10).
 
+- Planificador: pedido vacío rechazado; pedido válido al límite aceptado; pedido que excede rechazado por Comprobar y Confirmar; la ficha anterior se conserva; Limpiar borra ficha y entradas.
+- Kardex: entrada 10 y salida 3 dejan existencia 7; salida 8 se rechaza conservando saldo e historial.
+- Kardex: cantidad cero rechazada; el código también valida negativos y decimales con `Number.isSafeInteger`.
+- Kardex: búsqueda sin coincidencia descarta la selección previa; búsqueda vacía muestra la lista sin cambiar datos.
+- Kardex: cambiar el nombre del segundo material por ID no alteró el nombre ni el historial del primero.
+- Kardex: inactivar un material con movimientos conserva existencia 7 y los dos registros de historial; deshabilita movimientos nuevos.
+- Kardex: tras recargar, se recuperaron materiales y movimientos desde `localStorage`.
+- CSV: la interfaz confirmó la exportación de los dos movimientos. La carpeta de descarga no fue accesible para inspeccionar el contenido del archivo en esta verificación; confirme el CSV descargado antes de reportarlo como probado.
+- Pendiente de comprobación manual: cancelar la confirmación de eliminación de un material sin movimientos y verificar que siga presente. La acción usa la confirmación cancelable del navegador.
 
-## Mensajes visibles y pruebas de error
+La publicación en GitHub Pages no se ha realizado: requiere un repositorio propio y acceso a la cuenta GitHub del estudiante. Complete los enlaces y datos personales después de publicar.
 
-Esta versión muestra errores en rojo y resultados válidos en verde. Comprobar indica «Pedido no válido»; Confirmar indica «No se pudo confirmar». Si ya había un pedido válido, lo conserva y lo aclara. Los tres TODO siguen pendientes para el estudiante; los avisos de pendiente no son pruebas aprobadas. Complete esos cambios siguiendo la guía.
+## Aporte y ayuda recibida
 
-Busque las marcas TODO 1, TODO 2 y TODO 3; las líneas indicadas en la guía son orientativas. Mantenga las funciones mostrarMensaje y mostrarError, que ya están preparadas. Después de cambiar const error=null, conserve las líneas que siguen aunque difieran de la versión anterior de la guía.
+[Describa sus cambios, errores encontrados, correcciones y ayuda recibida de personas o IA.]
 
-Ejemplo con presupuesto S/150: 10 unidades a S/15.00 se aceptan. Para probar exceso, escriba S/15.01 como precio unitario: total S/150.10, exceso S/0.10. No reemplace el precio por S/0.01. Con otro presupuesto, use 10 unidades a presupuesto/10 y después aumente ese precio en S/0.01. Pruebe ambos botones.
+## GitHub Pages y entrega
 
-Si ya avanzó, conserve su carpeta anterior y trabaje con una copia. Traslade sus tres cambios y su personalización a esta versión; no sobrescriba su trabajo sin conservarlo. La modalidad, la rúbrica y la entrega de un PDF siguen vigentes.
+Suba los archivos extraídos a la raíz de su repositorio individual en GitHub. Para publicar, abra Settings > Pages > Deploy from a branch, elija `main` y `/(root)`, y guarde. Use la URL que muestre GitHub; compruebe el planificador y el kardex publicados. El repositorio y la cuenta deben ser suyos: no incluya contraseñas, datos reales de alumnos ni informes personales. GitHub Pages es un despliegue web; el CSV sigue siendo una copia, no una sincronización.
+
+Repositorio: [enlace de su repositorio]  
+Sitio publicado: [URL que GitHub muestre]
+
+Entregue en MAXEDRA el PDF solicitado por el curso, con explicación, personalización, capturas, resultados de las pruebas y aportes. No incluya código, ZIP, Word ni imágenes sueltas si la consigna sólo admite el PDF.

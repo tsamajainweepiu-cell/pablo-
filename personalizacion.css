@@ -1,0 +1,210 @@
+:root {
+  --kardex-primario: rgb(107, 33, 168);
+  --kardex-primario-oscuro: rgb(88, 28, 135);
+  --kardex-borde: rgb(221, 214, 230);
+  --kardex-fondo: rgb(250, 247, 252);
+  --kardex-texto-suave: rgb(74, 61, 84);
+  --kardex-exito: rgb(22, 101, 52);
+  --kardex-error: rgb(153, 27, 27);
+}
+
+.kardex-incrustado main {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.kardex-panel {
+  margin: 0;
+  padding: 24px;
+  border-color: var(--kardex-borde);
+  background: var(--kardex-fondo);
+}
+
+.kardex-etiqueta {
+  display: inline-block;
+  margin: 0 0 10px;
+  padding: 9px 13px;
+  border-radius: 7px;
+  background: var(--kardex-primario);
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.035em;
+}
+
+#kardex-controles {
+  min-width: 0;
+  margin: 18px 0 0;
+  padding: 14px;
+  border: 1px solid var(--kardex-borde);
+  border-radius: 12px;
+}
+
+#kardex-controles legend {
+  padding: 0 8px;
+  font-weight: 700;
+}
+
+.kardex-formulario {
+  margin: 14px 0;
+  padding: 18px;
+  border: 1px solid var(--kardex-borde);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.kardex-formulario h2 {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+}
+
+.kardex-formulario input,
+.kardex-formulario select {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid #8a9cad;
+  border-radius: 7px;
+  background: #fff;
+  color: #162638;
+  font: inherit;
+}
+
+.kardex-formulario input:focus-visible,
+.kardex-formulario select:focus-visible,
+.kardex-panel button:focus-visible {
+  outline: 3px solid #ecaa22;
+  outline-offset: 2px;
+}
+
+.kardex-busqueda-fila,
+.kardex-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.kardex-busqueda-fila input {
+  flex: 1 1 220px;
+}
+
+.kardex-panel button {
+  margin: 10px 6px 0 0;
+  background: var(--kardex-primario);
+}
+
+.kardex-panel button:hover:not(:disabled) {
+  background: var(--kardex-primario-oscuro);
+}
+
+.kardex-panel button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.kardex-panel button.kardex-secundario {
+  background: #536879;
+}
+
+.kardex-ayuda,
+.kardex-pie {
+  color: var(--kardex-texto-suave);
+  font-size: 0.94rem;
+}
+
+.kardex-materiales {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.kardex-materiales button {
+  width: 100%;
+  margin: 0;
+  text-align: left;
+}
+
+.kardex-materiales button[aria-pressed="true"] {
+  outline: 3px solid #ecaa22;
+  outline-offset: 2px;
+}
+
+.kardex-materiales .inactivo {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #e5e7eb;
+  color: #263445;
+  font-size: 0.82rem;
+}
+
+.kardex-mensaje {
+  min-height: 1.5em;
+  margin: 10px 0;
+  font-weight: 700;
+  white-space: pre-line;
+}
+
+.kardex-mensaje.error {
+  padding: 12px;
+  border-left: 5px solid var(--kardex-error);
+  background: #fef2f2;
+  color: var(--kardex-error);
+}
+
+.kardex-mensaje.exito {
+  padding: 12px;
+  border-left: 5px solid var(--kardex-exito);
+  background: #f0fdf4;
+  color: var(--kardex-exito);
+}
+
+.kardex-saldo {
+  color: var(--kardex-primario-oscuro);
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.kardex-tabla-contenedor {
+  overflow-x: auto;
+}
+
+.kardex-tabla-contenedor table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.kardex-tabla-contenedor th,
+.kardex-tabla-contenedor td {
+  padding: 9px;
+  border: 1px solid var(--kardex-borde);
+  text-align: left;
+}
+
+.kardex-tabla-contenedor th {
+  background: #f3e8ff;
+}
+
+.kardex-pie {
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 540px) {
+  .kardex-panel {
+    padding: 14px;
+  }
+
+  #kardex-controles {
+    padding: 8px;
+  }
+
+  .kardex-formulario {
+    padding: 14px;
+  }
+}

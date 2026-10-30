@@ -1,14 +1,11 @@
 <!doctype html>
 
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Planificador de materiales de pablo tsamajain weepiu </title>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Planificador de materiales</title>
 
-<link rel="stylesheet" href="styles.css"></head>
-
-<body><main><small>ET505 · Semana 7 · Trabajo individual</small><h1>Planificador de materiales de pablo tsamajain weepiu </h1> <p>Organice un pedido para una actividad escolar con un presupuesto de S/ 180.00. Simulación sin compras ni envíos.</p>
-
+<link rel="stylesheet" href="styles.css"><style>.kardex-frame{display:block;width:100%;min-height:720px;border:0}</style></head>
+<body><main><small>ET505 · Semana 7 · Trabajo individual</small><h1>Planificador de materiales</h1><p>Organice un pedido para una actividad escolar con un presupuesto de S/ 150.00. Simulación sin compras ni envíos.</p>
 
 
-<section><h2>Preparar un pedido</h2><form id="formulario" novalidate><label for="material">Material educativo</label><input id="material" maxlength="60" placeholder="Ejemplo: cuaderno" autocomplete="off"><div class="grid"><div><label for="cantidad">Cantidad de unidades</label><input id="cantidad" type="number" min="1" max="30" step="1"></div><div><label for="precio">Precio por unidad en soles</label><input id="precio" type="number" min="0.01" max="50" step="0.01"></div></div><button id="comprobar" type="button">Comprobar pedido</button><button type="submit">Confirmar simulación</button><p id="mensaje" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></p></form><h2>Último pedido válido</h2><p id="vacio">Todavía no ha confirmado un pedido.</p><div id="ficha" hidden></div><button id="limpiar" type="button">Limpiar</button></section><small>Use datos ficticios. La información sólo permanece en esta pestaña y se pierde al recargar.</small></main>
-
+<section><h2>Preparar un pedido</h2><form id="formulario" novalidate><label for="material">Material educativo</label><input id="material" maxlength="60" placeholder="Ejemplo: cuaderno" autocomplete="off"><div class="grid"><div><label for="cantidad">Cantidad de unidades</label><input id="cantidad" type="number" min="1" max="30" step="1"></div><div><label for="precio">Precio por unidad en soles</label><input id="precio" type="number" min="0.01" max="50" step="0.01"></div></div><button id="comprobar" type="button">Comprobar pedido</button><button type="submit">Confirmar simulación</button><p id="mensaje" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></p></form><h2>Último pedido válido</h2><p id="vacio">Todavía no ha confirmado un pedido.</p><div id="ficha" hidden></div><button id="limpiar" type="button">Limpiar</button></section><small>Use datos ficticios. La información sólo permanece en esta pestaña y se pierde al recargar.</small>
+<section aria-labelledby="kardex-titulo"><h2 id="kardex-titulo">Kardex de materiales</h2><p>El kardex registra existencias físicas. Su saldo no modifica el presupuesto en soles del planificador.</p><iframe class="kardex-frame" id="kardex-frame" title="Kardex de materiales" src="kardex.html"></iframe></section></main>
 <script src="app.js"></script></body></html>
-
